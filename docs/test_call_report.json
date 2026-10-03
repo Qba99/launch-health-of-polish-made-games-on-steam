@@ -1,0 +1,114 @@
+{
+ "run_at_utc": "2026-10-03T11:04:21+00:00",
+ "app_id": 1684350,
+ "launch_date": "2024-03-04",
+ "checks": [
+  {
+   "status": "PASS",
+   "check": "store search",
+   "detail": "The Thaumaturge = app 1684350"
+  },
+  {
+   "status": "PASS",
+   "check": "release date",
+   "detail": "launch day = 2024-03-04"
+  },
+  {
+   "status": "PASS",
+   "check": "GetAppReviews call",
+   "detail": "100 reviews on page 1"
+  },
+  {
+   "status": "PASS",
+   "check": "total_matching",
+   "detail": "Steam counts 1973 reviews in the window"
+  },
+  {
+   "status": "PASS",
+   "check": "date filter",
+   "detail": "newest 2024-06-02 21:18 UTC, oldest 2024-05-13 04:18 UTC, 0 outside the window"
+  },
+  {
+   "status": "PASS",
+   "check": "newest-first order",
+   "detail": "sorted by creation time"
+  },
+  {
+   "status": "PASS",
+   "check": "all languages",
+   "detail": "{'english': 42, 'polish': 22, 'schinese': 15, 'russian': 10, 'german': 3, 'czech': 2}"
+  },
+  {
+   "status": "PASS",
+   "check": "all purchase types",
+   "detail": "Steam purchases 75, other (keys, gifts) 25"
+  },
+  {
+   "status": "PASS",
+   "check": "playtime at review",
+   "detail": "present on 100/100 reviews (minutes)"
+  },
+  {
+   "status": "PASS",
+   "check": "field 'refunded'",
+   "detail": "present on 100/100, values {False: 100}"
+  },
+  {
+   "status": "PASS",
+   "check": "field 'written_during_early_access'",
+   "detail": "present on 100/100, values {False: 100}"
+  },
+  {
+   "status": "PASS",
+   "check": "field 'voted_up'",
+   "detail": "present on 100/100, values {True: 89, False: 11}"
+  },
+  {
+   "status": "PASS",
+   "check": "field 'timestamp_updated'",
+   "detail": "present on 100/100"
+  },
+  {
+   "status": "PASS",
+   "check": "steamid removed",
+   "detail": "0 left in saved data"
+  },
+  {
+   "status": "PASS",
+   "check": "paging",
+   "detail": "100 new reviews, 0 repeated from page 1"
+  }
+ ],
+ "query_summary": {
+  "num_reviews": 100,
+  "review_score": 8,
+  "review_score_desc": "Very Positive",
+  "total_positive": 1629,
+  "total_negative": 344,
+  "total_reviews": 1973
+ },
+ "total_matching": 1973,
+ "review_fields": {
+  "recommendationid": "str",
+  "language": "str",
+  "review": "str",
+  "timestamp_created": "int",
+  "timestamp_updated": "int",
+  "voted_up": "bool",
+  "votes_up": "int",
+  "votes_funny": "int",
+  "weighted_vote_score": "float",
+  "comment_count": "int",
+  "steam_purchase": "bool",
+  "received_for_free": "bool",
+  "written_during_early_access": "bool",
+  "primarily_steam_deck": "bool",
+  "refunded": "bool",
+  "author.num_reviews": "int",
+  "author.playtime_forever": "int",
+  "author.playtime_last_two_weeks": "int",
+  "author.playtime_at_review": "int",
+  "author.deck_playtime_at_review": "int",
+  "author.last_played": "int"
+ }
+}

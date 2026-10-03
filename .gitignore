@@ -1,0 +1,10 @@
+# Raw API pages: large, and rebuilt by src/fetch_reviews.py
+data/raw/
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+# Power BI temp files
+~$*.pbix
