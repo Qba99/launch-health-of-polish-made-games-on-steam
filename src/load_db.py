@@ -3,7 +3,8 @@
 1. creates the database if it does not exist yet (default name: steam_reviews)
 2. runs sql/00_schema.sql (drops and recreates the tables, so re-runs are safe)
 3. bulk-loads data/clean/*.csv with COPY (seconds, not minutes)
-4. checks row counts, per-game counts and keys, then prints a summary
+4. creates the analysis views: every sql/NN_*.sql file after 00, in order
+5. checks row counts, per-game counts and keys, then prints a summary
 
 Connection settings come from the usual PostgreSQL environment variables
 (PGHOST, PGPORT, PGUSER, PGPASSWORD) or the options below. If no password is
@@ -12,6 +13,7 @@ set, you are asked for it; it is never written to disk.
 Usage (from the repo root):
     python src/load_db.py
     python src/load_db.py --user postgres --dbname steam_reviews
+    python src/load_db.py --views-only     # rebuild only the views (after editing sql/)
 """
 from __future__ import annotations
 
@@ -27,7 +29,8 @@ from psycopg2 import sql
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 CLEAN_DIR = REPO_ROOT / "data" / "clean"
-SCHEMA_FILE = REPO_ROOT / "sql" / "00_schema.sql"
+SQL_DIR = REPO_ROOT / "sql"
+SCHEMA_FILE = SQL_DIR / "00_schema.sql"
 TABLES = ["games", "reviews", "review_text_negative"]   # load order respects foreign keys
 
 
@@ -74,6 +77,21 @@ def load(conn) -> dict:
         cur.execute("ANALYZE")
     conn.commit()
     return expected
+
+
+def apply_views(conn) -> None:
+    """Run sql/01_*.sql, 02_*.sql ... in order. Each file is one transaction."""
+    files = sorted(f for f in SQL_DIR.glob("[0-9][0-9]_*.sql") if f.name != SCHEMA_FILE.name)
+    print("Creating views")
+    for path in files:
+        with conn.cursor() as cur:
+            try:
+                cur.execute(path.read_text(encoding="utf-8"))
+            except psycopg2.Error as exc:
+                conn.rollback()
+                raise SystemExit(f"  {path.name} failed: {exc.pgerror or exc}")
+        conn.commit()
+        print(f"  {path.name}")
 
 
 def verify(conn, expected: dict) -> bool:
@@ -129,12 +147,21 @@ def main(argv=None) -> int:
     parser.add_argument("--user", default=os.environ.get("PGUSER", "postgres"))
     parser.add_argument("--dbname", default="steam_reviews")
     parser.add_argument("--dsn", help="full connection string instead of the options above")
+    parser.add_argument("--views-only", action="store_true", help="skip the data load, rebuild views")
     args = parser.parse_args(argv)
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(errors="replace")
     args.password = os.environ.get("PGPASSWORD")
     if not args.dsn and args.password is None:
         args.password = getpass.getpass(f"Password for PostgreSQL user '{args.user}': ")
+
+    if args.views_only:
+        conn = connect(args, args.dbname)
+        try:
+            apply_views(conn)
+        finally:
+            conn.close()
+        return 0
 
     missing = [t for t in TABLES if not (CLEAN_DIR / f"{t}.csv").exists()]
     if missing:
@@ -147,6 +174,7 @@ def main(argv=None) -> int:
     print(f"Loading into {conn.info.dbname} ...")
     try:
         expected = load(conn)
+        apply_views(conn)
         ok = verify(conn, expected)
     finally:
         conn.close()

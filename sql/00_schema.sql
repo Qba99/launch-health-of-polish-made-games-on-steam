@@ -3,9 +3,9 @@
 -- load_db.py runs this file, then fills the tables from data/clean/*.csv.
 -- Re-running it rebuilds everything from scratch, so a load is always repeatable.
 
-DROP TABLE IF EXISTS review_text_negative;
-DROP TABLE IF EXISTS reviews;
-DROP TABLE IF EXISTS games;
+DROP TABLE IF EXISTS review_text_negative CASCADE;   -- CASCADE also drops the views built on it
+DROP TABLE IF EXISTS reviews CASCADE;
+DROP TABLE IF EXISTS games CASCADE;
 
 -- One row per game: the 23 titles and how their launch window was defined.
 CREATE TABLE games (
