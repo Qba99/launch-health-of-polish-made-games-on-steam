@@ -1,0 +1,24 @@
+app_id,game,developer,steam_name,cohort,launch_type,launch_date,launch_date_source,genres,role,reviews_lifetime,reviews_in_window,reviews_collected
+323190,Frostpunk,11 bit studios,Frostpunk,benchmark,full,2018-04-24,steam store,Simulation; Strategy,Original vs sequel (Frostpunk 2),137744,12861,12859
+534380,Dying Light 2,Techland,Dying Light 2 Stay Human: Reloaded Edition,benchmark,full,2022-02-03,steam store,Action; Adventure; RPG,AAA sequel; franchise line with The Beast,220266,83199,83192
+641320,Cooking Simulator,Big Cheese Studio,Cooking Simulator,core,full,2019-06-06,steam store,Casual; Simulation,Simulator genre,19729,2639,2639
+680420,Outriders,People Can Fly,OUTRIDERS,core,full,2021-04-01,steam store,Action; Adventure; RPG,Launch with server problems,61305,44642,44635
+731040,The Invincible,Starward Industries,The Invincible,core,full,2023-11-06,steam store,Action; Adventure; Indie,Narrative debut,13808,3020,3020
+756800,Contraband Police,Crazy Rocks,Contraband Police,core,full,2023-03-08,steam store,Action; Adventure; Simulation,Simulator genre,25853,5678,5677
+815370,Green Hell,Creepy Jar,Green Hell,core,early_access,2018-08-29,manual override,Action; Adventure; Indie; Simulation,EA indie hit,103029,2068,2068
+953490,Carrion,Phobia Game Studio,CARRION,core,full,2020-07-23,steam store,Action; Adventure; Indie,Small-team indie,36097,7568,7568
+1016800,Chernobylite,The Farm 51,Chernobylite Complete Edition,core,early_access,2019-10-16,manual override,Action; Adventure; Indie; RPG; Simulation,EA; 1.0 in 2021,15807,1303,1303
+1065310,Evil West,Flying Wild Hog,Evil West,core,full,2022-11-21,steam store,Action; Adventure; RPG,AA action,13680,4435,4435
+1091500,Cyberpunk 2077,CD PROJEKT RED,Cyberpunk 2077,benchmark,full,2020-12-09,steam store,RPG,Spotlight: troubled launch then recovery,991019,368901,368882
+1139900,Ghostrunner,One More Level,Ghostrunner,core,full,2020-10-27,steam store,Action,Franchise pair with Ghostrunner 2,66964,17967,17967
+1149620,Gas Station Simulator,DRAGO entertainment,Gas Station Simulator,core,full,2021-09-15,steam store,Casual; Indie; Simulation,Simulator genre,27620,8921,8921
+1293160,The Medium,Bloober Team,The Medium,core,full,2021-01-28,steam store,Adventure,Horror,10326,4363,4363
+1336490,Against the Storm,Eremite Games,Against the Storm,core,early_access,2022-11-01,manual override,Simulation; Strategy,Steam EA launch after a year as an Epic exclusive; 1.0 in 2023,37651,6390,6389
+1363080,Manor Lords,Slavic Magic,Manor Lords,core,early_access,2024-04-26,manual override,Simulation; Strategy; Early Access,One-person studio; record EA launch,92212,51060,51057
+1501750,Lords of the Fallen,CI Games,Lords of the Fallen,core,full,2023-10-13,steam store,Action; Adventure; RPG,Launch with performance complaints,56585,26452,26447
+1601570,The Alters,11 bit studios,The Alters,core,full,2025-06-13,steam store,Adventure,Newest 11 bit title,19952,11472,11469
+1601580,Frostpunk 2,11 bit studios,Frostpunk 2,core,full,2024-09-20,steam store,Simulation; Strategy,Sequel vs original,27246,17543,17541
+1681430,RoboCop: Rogue City,Teyon,RoboCop: Rogue City,core,full,2023-11-02,steam store,Action; Adventure,Licensed AA title,37656,9435,9434
+1684350,The Thaumaturge,Fool's Theory,The Thaumaturge,core,full,2024-03-04,steam store,Adventure; RPG,Smallest title; near review floor,6007,1973,1973
+2144740,Ghostrunner 2,One More Level,Ghostrunner 2,core,full,2023-10-26,steam store,Action; Adventure; Strategy,Sequel vs original,11641,3554,3554
+3008130,Dying Light: The Beast,Techland,Dying Light: The Beast,core,full,2025-09-18,steam store,Action; Adventure; RPG,Newest title in the set,72566,58835,58633

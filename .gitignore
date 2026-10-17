@@ -8,3 +8,6 @@ venv/
 .ipynb_checkpoints/
 # Power BI temp files
 ~$*.pbix
+# Clean review tables are over GitHub's 100 MB limit; rebuild with src/clean.py
+data/clean/reviews.csv
+data/clean/review_text_negative.csv
