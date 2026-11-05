@@ -1,0 +1,24 @@
+app_id,game,cohort,launch_type,reviews_week1,pct_week1,pct_month1,pct_day90,reviews_day90,change_week1_to_day90,week1_predicts_day90,week1_reliable,pct_days7_90,reviews_days7_90,change_week1_to_later,week1_predicts_later,pct_reviews_in_week1,trajectory,pct_day90_unedited,pct_edited
+323190,Frostpunk,benchmark,full,6077,88.3,87.5,87.5,12859,-0.8,t,t,86.8,6782,-1.5,t,47.3,stable,87.7,19.3
+534380,Dying Light 2,benchmark,full,41009,81.1,79.8,79.0,83192,-2.1,t,t,77.0,42183,-4.1,t,49.3,stable,82.5,19.6
+641320,Cooking Simulator,core,full,936,78.8,83.1,81.0,2639,2.2,t,t,82.2,1703,3.4,t,35.5,stable,81.4,16.5
+680420,Outriders,core,full,22082,65.6,65.2,64.0,44635,-1.6,t,t,62.5,22553,-3.1,t,49.5,stable,68.2,19.4
+731040,The Invincible,core,full,790,92.4,92.0,90.6,3020,-1.8,t,t,89.9,2230,-2.5,t,26.2,stable,91.3,14.7
+756800,Contraband Police,core,full,2129,95.4,95.0,94.8,5677,-0.6,t,t,94.4,3548,-1.0,t,37.5,stable,95.2,12.8
+815370,Green Hell,core,early_access,546,90.1,89.0,88.6,2068,-1.5,t,t,88.1,1522,-2.0,t,26.4,stable,89.3,20.8
+953490,Carrion,core,full,4105,93.1,93.3,93.4,7568,0.3,t,t,93.8,3463,0.7,t,54.2,stable,94.1,12.1
+1016800,Chernobylite,core,early_access,563,73.4,72.8,76.1,1303,2.7,t,t,78.2,740,4.8,t,43.2,stable,76.7,27.5
+1065310,Evil West,core,full,1981,78.6,77.8,76.2,4435,-2.4,t,t,74.2,2454,-4.4,t,44.7,stable,77.7,13.7
+1091500,Cyberpunk 2077,benchmark,full,193382,80.8,80.8,80.3,368882,-0.5,t,t,79.8,175500,-1.0,t,52.4,stable,82.7,22.3
+1139900,Ghostrunner,core,full,6652,89.4,90.9,92.4,17967,3.0,t,t,94.3,11315,4.9,t,37.0,stable,93.2,14.9
+1149620,Gas Station Simulator,core,full,2657,85.4,86.4,88.6,8921,3.2,t,t,90.0,6264,4.6,t,29.8,stable,89.7,11.6
+1293160,The Medium,core,full,1944,86.3,87.9,88.5,4363,2.2,t,t,90.3,2419,4.0,t,44.6,stable,90.6,15.6
+1336490,Against the Storm,core,early_access,811,97.3,97.1,96.1,6389,-1.2,t,t,95.9,5578,-1.4,t,12.7,stable,96.7,14.8
+1363080,Manor Lords,core,early_access,28619,87.2,87.4,87.1,51057,-0.1,t,t,86.8,22438,-0.4,t,56.1,stable,89.5,11.7
+1501750,Lords of the Fallen,core,full,14348,63.0,64.2,65.7,26447,2.7,t,t,68.9,12099,5.9,f,54.3,stable,67.0,27.7
+1601570,The Alters,core,full,4313,90.6,90.2,90.4,11469,-0.2,t,t,90.3,7156,-0.3,t,37.6,stable,91.8,18.6
+1601580,Frostpunk 2,core,full,9120,75.1,74.6,77.1,17541,2.0,t,t,79.3,8421,4.2,t,52.0,stable,79.0,16.6
+1681430,RoboCop: Rogue City,core,full,3041,94.3,94.9,93.8,9434,-0.5,t,t,93.5,6393,-0.8,t,32.2,stable,94.4,15.2
+1684350,The Thaumaturge,core,full,951,79.7,81.2,82.6,1973,2.9,t,t,85.2,1022,5.5,f,48.2,stable,83.2,17.2
+2144740,Ghostrunner 2,core,full,1229,89.5,90.1,88.8,3554,-0.7,t,t,88.4,2325,-1.1,t,34.6,stable,90.5,19.3
+3008130,Dying Light: The Beast,core,full,26504,88.9,87.5,87.8,58633,-1.1,t,t,86.8,32129,-2.1,t,45.2,stable,90.0,17.1

@@ -1,0 +1,14 @@
+market,market_order,core_games_with_50_reviews,reviews,median_gap_points,games_more_than_5_below,excess_negatives
+Chinese,2,20,46488,-6.4,11,6545
+English,1,20,144116,1.0,0,-3586
+French,6,20,9839,1.8,1,-224
+German,4,20,18309,1.7,0,-721
+Japanese,11,10,1428,-16.4,7,249
+Korean,7,14,4727,-5.9,8,434
+Other,99,19,9007,4.2,0,-527
+Polish,5,19,10006,6.3,0,-810
+Portuguese (Brazil),8,15,6322,6.2,0,-465
+Russian,3,20,23963,0.1,2,-41
+Spanish,9,16,7377,5.0,0,-526
+Turkish,10,10,4753,3.5,0,-187
+Ukrainian,12,6,1626,6.0,0,-106

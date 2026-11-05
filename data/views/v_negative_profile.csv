@@ -1,0 +1,24 @@
+app_id,game,cohort,negatives,pct_neg_under_2h,pct_neg_20h_plus,pct_neg_refunded,refunded_all,median_hours_negative,median_hours_positive,main_problem
+323190,Frostpunk,benchmark,1601,28.4,17.8,5.0,101,8.1,15.3,first impression
+534380,Dying Light 2,benchmark,17450,11.1,50.5,1.0,229,20.3,18.8,content
+641320,Cooking Simulator,core,501,56.7,4.0,11.4,81,1.6,3.9,first impression
+680420,Outriders,core,16054,11.7,47.4,0.9,149,18.0,15.8,content
+731040,The Invincible,core,285,15.1,1.4,2.5,11,6.5,7.7,first impression
+756800,Contraband Police,core,296,24.7,4.4,3.4,15,6.2,9.4,first impression
+815370,Green Hell,core,234,49.1,10.3,11.5,43,2.0,10.1,first impression
+953490,Carrion,core,497,31.0,0.2,4.8,32,3.9,5.6,first impression
+1016800,Chernobylite,core,311,55.9,1.9,12.5,58,1.6,2.5,first impression
+1065310,Evil West,core,1057,22.7,4.2,3.0,41,7.2,7.2,first impression
+1091500,Cyberpunk 2077,benchmark,72506,11.2,46.1,0.9,922,17.1,23.5,content
+1139900,Ghostrunner,core,1357,36.6,1.0,2.2,40,3.6,6.9,first impression
+1149620,Gas Station Simulator,core,1016,12.3,12.1,1.8,22,8.2,8.3,first impression
+1293160,The Medium,core,502,27.9,2.0,3.8,21,6.6,9.1,first impression
+1336490,Against the Storm,core,248,26.2,29.8,3.2,9,7.4,17.7,content
+1363080,Manor Lords,core,6606,12.5,23.8,3.5,374,9.3,10.3,content
+1501750,Lords of the Fallen,core,9069,25.2,32.3,5.8,651,8.7,16.2,content
+1601570,The Alters,core,1103,11.7,26.5,2.1,33,12.5,20.0,content
+1601580,Frostpunk 2,core,4016,20.7,19.5,4.5,200,8.2,13.9,first impression
+1681430,RoboCop: Rogue City,core,587,32.2,6.6,6.1,47,4.2,12.7,first impression
+1684350,The Thaumaturge,core,344,25.3,18.0,5.8,24,6.1,12.8,first impression
+2144740,Ghostrunner 2,core,399,23.8,7.5,3.0,16,6.1,9.5,first impression
+3008130,Dying Light: The Beast,core,7175,7.9,49.3,1.7,207,19.7,17.6,content

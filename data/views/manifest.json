@@ -1,0 +1,16 @@
+{
+ "exported_at_utc": "2026-11-05T18:09:12+00:00",
+ "database": "steam_reviews",
+ "files": {
+  "games.csv": 23,
+  "v_daily_score.csv": 2093,
+  "v_week1_vs_day90.csv": 23,
+  "v_playtime_buckets.csv": 92,
+  "v_negative_profile.csv": 23,
+  "v_language_score.csv": 299,
+  "v_market_summary.csv": 13,
+  "v_theme_by_period.csv": 966,
+  "v_first_patch.csv": 23,
+  "v_patch_effect.csv": 23
+ }
+}
