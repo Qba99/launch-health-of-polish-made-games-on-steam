@@ -1,6 +1,7 @@
 -- view_checks.sql
 -- Cross-checks each view against the raw reviews table, computed a second, simpler way.
--- Every query returns NO ROWS when the views are right. Run after load_db.py.
+-- Every query returns NO ROWS when the views are right. load_db.py runs this file itself.
+-- In pgAdmin: open the Query Tool on the steam_reviews database (not "postgres").
 
 -- 1. Day-90 cumulative score = plain % positive of all the game's reviews
 SELECT 'v_daily_score day 90' AS failed_check, s.app_id
