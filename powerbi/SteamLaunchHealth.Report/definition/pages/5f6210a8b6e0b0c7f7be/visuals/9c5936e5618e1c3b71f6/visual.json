@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "9c5936e5618e1c3b71f6",
+  "position": {
+    "x": 796,
+    "y": 96,
+    "z": 6000,
+    "width": 216,
+    "height": 88,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Recent vs Week 1 (pts)"
+                }
+              },
+              "queryRef": "_Measures.Recent vs Week 1 (pts)",
+              "nativeQueryRef": "Recent vs Week 1 (pts)",
+              "displayName": "Change since week 1 (pts)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

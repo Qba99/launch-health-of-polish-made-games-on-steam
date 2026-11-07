@@ -45,3 +45,14 @@ WHERE l.n <> g.reviews_collected OR ABS(l.excess) > 10;   -- rounding only
 SELECT 'v_theme_by_period mentions', app_id, theme, period
 FROM v_theme_by_period
 WHERE mentions > negatives_analysed;
+
+-- 8. Power BI fact table holds every review, and every review finds its dimension rows
+SELECT 'pbi model keys', COUNT(*)
+FROM pbi_fact_reviews f
+LEFT JOIN pbi_dim_game g USING (app_id)
+LEFT JOIN pbi_dim_day d USING (day_n)
+LEFT JOIN pbi_dim_date dt ON dt.date = f.created_date
+LEFT JOIN pbi_dim_language l USING (language)
+LEFT JOIN pbi_dim_playtime p USING (playtime_bucket_order)
+WHERE g.app_id IS NULL OR d.day_n IS NULL OR dt.date IS NULL OR l.language IS NULL OR p.playtime_bucket IS NULL
+HAVING COUNT(*) > 0;

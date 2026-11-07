@@ -1,0 +1,62 @@
+table dim_day
+	lineageTag: 36f673f4-4a7f-425f-a697-8a522c37fe50
+
+	column day_n
+		dataType: int64
+		formatString: 0
+		lineageTag: 147d6639-092b-49e0-aa73-84b8ba34d5e0
+		summarizeBy: none
+		sourceColumn: day_n
+
+		annotation SummarizationSetBy = Automatic
+
+	column week_since_launch
+		dataType: int64
+		formatString: 0
+		lineageTag: d2b3355e-e645-486d-a8ec-92c636b033a5
+		summarizeBy: sum
+		sourceColumn: week_since_launch
+
+		annotation SummarizationSetBy = Automatic
+
+	column period
+		dataType: string
+		lineageTag: 6caf596c-3400-4237-b756-43ce40f93212
+		summarizeBy: none
+		sourceColumn: period
+		sortByColumn: period_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_order
+		dataType: int64
+		formatString: 0
+		lineageTag: bed44bd3-1732-46fd-81d6-4ccf5a625bcf
+		summarizeBy: sum
+		sourceColumn: period_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_since_launch
+		dataType: string
+		lineageTag: 12d87f0c-e704-4dce-996d-eb533d96b98a
+		summarizeBy: none
+		sourceColumn: month_since_launch
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_day = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "steam_reviews"),
+				    public_pbi_dim_day = Source{[Schema="public",Item="pbi_dim_day"]}[Data]
+				in
+				    public_pbi_dim_day
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

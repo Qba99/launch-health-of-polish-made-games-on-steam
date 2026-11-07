@@ -1,0 +1,45 @@
+relationship b32876ef-1985-4372-a87d-263c2611597e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_game.launch_date
+	toColumn: LocalDateTable_c971d6c9-b203-43f6-a113-5298a5ef44a1.Date
+
+relationship 5737bcea-e3b1-111b-8ee7-81c666937dfb
+	fromColumn: fact_reviews.app_id
+	toColumn: dim_game.app_id
+
+relationship e890baa8-cdf5-6e86-0c16-bb84743fcbb9
+	fromColumn: fact_reviews.day_n
+	toColumn: dim_day.day_n
+
+relationship 579d6626-60f6-a20e-c15a-b689c84d6bd5
+	fromColumn: fact_reviews.created_date
+	toColumn: dim_date.date
+
+relationship 39a5b2fc-a14d-0f05-452d-36efb7b4093f
+	fromColumn: fact_reviews.language
+	toColumn: dim_language.language
+
+relationship 71147ded-43b5-d9de-9725-99ef7a708aae
+	fromColumn: fact_reviews.playtime_bucket_order
+	toColumn: dim_playtime.playtime_bucket_order
+
+relationship aab51ad4-5da9-7aed-5318-5858878c220b
+	fromColumn: fact_themes.app_id
+	toColumn: dim_game.app_id
+
+relationship a668f1d7-bf04-7ca1-5b14-25622020f9a6
+	fromColumn: fact_themes.day_n
+	toColumn: dim_day.day_n
+
+relationship 26318173-3b17-9950-9a4c-3d0af8190f61
+	fromColumn: fact_themes.language
+	toColumn: dim_language.language
+
+relationship f070666d-2404-002a-7eaa-7ee8b996c8e8
+	fromColumn: fact_themes.theme_order
+	toColumn: dim_theme.theme_order
+
+relationship 07b6b2bd-95de-548d-31b7-5eaba210530c
+	fromColumn: patch_effect.app_id
+	toColumn: dim_game.app_id
+

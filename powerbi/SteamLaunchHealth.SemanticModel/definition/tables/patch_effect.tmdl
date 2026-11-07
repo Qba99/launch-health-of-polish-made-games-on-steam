@@ -1,0 +1,165 @@
+table patch_effect
+	lineageTag: cac2ce46-9d15-4ae5-b63a-d011e88fca8b
+
+	column app_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a2cb90ee-0df0-4eef-b38e-bdb8ce686258
+		summarizeBy: none
+		sourceColumn: app_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column game
+		dataType: string
+		lineageTag: 93cd51ad-9918-466e-ab53-b259f3717580
+		summarizeBy: none
+		sourceColumn: game
+
+		annotation SummarizationSetBy = Automatic
+
+	column patch_day
+		dataType: int64
+		formatString: 0
+		lineageTag: f71833c3-fb98-437c-a9ab-bb9cf0931408
+		summarizeBy: sum
+		sourceColumn: patch_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column patch_title
+		dataType: string
+		lineageTag: bfcec44a-b8fb-4a23-886e-069753a26d3e
+		summarizeBy: none
+		sourceColumn: patch_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_before
+		dataType: int64
+		formatString: 0
+		lineageTag: c6b4540d-3bd2-4e5b-93eb-282813bf2d9e
+		summarizeBy: sum
+		sourceColumn: days_before
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_after
+		dataType: int64
+		formatString: 0
+		lineageTag: 752c68fd-2cc4-40b2-841b-41cf30cfd694
+		summarizeBy: sum
+		sourceColumn: days_after
+
+		annotation SummarizationSetBy = Automatic
+
+	column reviews_before
+		dataType: int64
+		formatString: 0
+		lineageTag: a63fcb1f-c6b2-4cd2-9f76-b837f2a4f041
+		summarizeBy: sum
+		sourceColumn: reviews_before
+
+		annotation SummarizationSetBy = Automatic
+
+	column pct_positive_before
+		dataType: double
+		lineageTag: 3412df15-712e-4d77-9501-d0ef2fed48c5
+		summarizeBy: sum
+		sourceColumn: pct_positive_before
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column reviews_after
+		dataType: int64
+		formatString: 0
+		lineageTag: 00b5534e-3ae7-49a6-901a-18d096ac1685
+		summarizeBy: sum
+		sourceColumn: reviews_after
+
+		annotation SummarizationSetBy = Automatic
+
+	column pct_positive_after
+		dataType: double
+		lineageTag: 4379ead9-6e5f-4278-8ed0-07fe5931fb2d
+		summarizeBy: sum
+		sourceColumn: pct_positive_after
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column change_points
+		dataType: double
+		lineageTag: 435bd12b-8336-43ff-82b9-677af32f814c
+		summarizeBy: sum
+		sourceColumn: change_points
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_neg_performance_before
+		dataType: double
+		lineageTag: 57477b95-262d-4b16-98a1-0da94313622b
+		summarizeBy: sum
+		sourceColumn: pct_neg_performance_before
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_neg_performance_after
+		dataType: double
+		lineageTag: d77fa796-6013-4cb6-9c40-509b9c3bed12
+		summarizeBy: sum
+		sourceColumn: pct_neg_performance_after
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_neg_bugs_before
+		dataType: double
+		lineageTag: 595e68a9-2753-48f2-ac98-a102f255eacd
+		summarizeBy: sum
+		sourceColumn: pct_neg_bugs_before
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_neg_bugs_after
+		dataType: double
+		lineageTag: cefff2f3-6972-4adb-9da8-faa3556587d7
+		summarizeBy: sum
+		sourceColumn: pct_neg_bugs_after
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column reliable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7087c2b7-0bb6-4314-a959-946e30e62ecc
+		summarizeBy: none
+		sourceColumn: reliable
+
+		annotation SummarizationSetBy = Automatic
+
+	partition patch_effect = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "steam_reviews"),
+				    public_pbi_patch_effect = Source{[Schema="public",Item="pbi_patch_effect"]}[Data]
+				in
+				    public_pbi_patch_effect
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

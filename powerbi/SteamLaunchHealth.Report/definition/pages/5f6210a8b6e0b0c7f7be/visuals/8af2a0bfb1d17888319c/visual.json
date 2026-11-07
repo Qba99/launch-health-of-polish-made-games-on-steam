@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "8af2a0bfb1d17888319c",
+  "position": {
+    "x": 568,
+    "y": 96,
+    "z": 5000,
+    "width": 216,
+    "height": 88,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Recent % Positive (days 61-90)"
+                }
+              },
+              "queryRef": "_Measures.Recent % Positive (days 61-90)",
+              "nativeQueryRef": "Recent % Positive (days 61-90)",
+              "displayName": "Days 61-90 % positive"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

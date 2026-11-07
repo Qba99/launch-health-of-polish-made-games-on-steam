@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "061964d8c60c30a07531",
+  "position": {
+    "x": 340,
+    "y": 96,
+    "z": 4000,
+    "width": 216,
+    "height": 88,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Week-1 % Positive"
+                }
+              },
+              "queryRef": "_Measures.Week-1 % Positive",
+              "nativeQueryRef": "Week-1 % Positive",
+              "displayName": "Week-1 % positive"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

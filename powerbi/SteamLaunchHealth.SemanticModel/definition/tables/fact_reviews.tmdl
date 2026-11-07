@@ -1,0 +1,159 @@
+table fact_reviews
+	lineageTag: 05a4eb13-b529-4287-8549-a1186a42e88d
+
+	column recommendation_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 7becadaa-eb60-42a2-ab88-67cb3337dfab
+		summarizeBy: sum
+		sourceColumn: recommendation_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column app_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0d08a6db-a98d-45b3-86ef-b755984a2b90
+		summarizeBy: none
+		sourceColumn: app_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_n
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d5954199-33a7-4b9b-8241-3e79c35bb312
+		summarizeBy: none
+		sourceColumn: day_n
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_date
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: c936d718-8539-4627-bbbf-d3105c2faf6b
+		summarizeBy: none
+		sourceColumn: created_date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column language
+		dataType: string
+		isHidden
+		lineageTag: 18629efd-c066-43d5-b4b2-0aba2a04a85f
+		summarizeBy: none
+		sourceColumn: language
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column voted_up
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4830f58a-0070-496a-9ab0-08b5dd451cf6
+		summarizeBy: none
+		sourceColumn: voted_up
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_edited
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d1ce9b71-5b0c-4bdb-bc88-76d4348dc9ff
+		summarizeBy: none
+		sourceColumn: is_edited
+
+		annotation SummarizationSetBy = Automatic
+
+	column refunded
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1245c04f-a49e-4149-bf66-4fe0530b0acb
+		summarizeBy: none
+		sourceColumn: refunded
+
+		annotation SummarizationSetBy = Automatic
+
+	column steam_purchase
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9eabd6d6-ef1b-4194-ba7d-1dd71bbd4bdc
+		summarizeBy: none
+		sourceColumn: steam_purchase
+
+		annotation SummarizationSetBy = Automatic
+
+	column written_during_early_access
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c3c8904a-5c59-4fcb-be3d-d3b2755d33c4
+		summarizeBy: none
+		sourceColumn: written_during_early_access
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_dev_response
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 904acdf7-f41d-476c-904e-5f2352760a99
+		summarizeBy: none
+		sourceColumn: has_dev_response
+
+		annotation SummarizationSetBy = Automatic
+
+	column playtime_bucket_order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: db9384eb-c620-4c8d-93ad-f29e34e761ad
+		summarizeBy: none
+		sourceColumn: playtime_bucket_order
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column playtime_at_review_hours
+		dataType: double
+		lineageTag: a0ad4996-1bf8-4853-a2c2-d56093910989
+		summarizeBy: sum
+		sourceColumn: playtime_at_review_hours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column review_length
+		dataType: int64
+		formatString: 0
+		lineageTag: 64e14c9e-e466-4371-8155-f19d94c552f0
+		summarizeBy: sum
+		sourceColumn: review_length
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_reviews = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "steam_reviews"),
+				    public_pbi_fact_reviews = Source{[Schema="public",Item="pbi_fact_reviews"]}[Data]
+				in
+				    public_pbi_fact_reviews
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

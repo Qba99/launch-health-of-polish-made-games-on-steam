@@ -1,0 +1,45 @@
+table dim_playtime
+	lineageTag: 971a767a-f7ef-42da-be56-5d40ebadbae2
+
+	column playtime_bucket_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 07f87cd0-e81f-4540-9c6a-512e668e75c1
+		summarizeBy: none
+		sourceColumn: playtime_bucket_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column playtime_bucket
+		dataType: string
+		lineageTag: db85cf36-3aeb-48ca-95fe-a3102737331e
+		summarizeBy: none
+		sourceColumn: playtime_bucket
+		sortByColumn: playtime_bucket_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column in_refund_window
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fedb9b23-08eb-431a-a84c-0f037b463f7a
+		summarizeBy: none
+		sourceColumn: in_refund_window
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_playtime = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "steam_reviews"),
+				    public_pbi_dim_playtime = Source{[Schema="public",Item="pbi_dim_playtime"]}[Data]
+				in
+				    public_pbi_dim_playtime
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

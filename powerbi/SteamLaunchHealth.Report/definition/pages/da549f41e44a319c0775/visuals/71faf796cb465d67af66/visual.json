@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "71faf796cb465d67af66",
+  "position": {
+    "x": 640,
+    "y": 96,
+    "z": 7000,
+    "width": 292,
+    "height": 96,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Early-Negative Share (0-2h)"
+                }
+              },
+              "queryRef": "_Measures.Early-Negative Share (0-2h)",
+              "nativeQueryRef": "Early-Negative Share (0-2h)",
+              "displayName": "Negatives in first 2 hours"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

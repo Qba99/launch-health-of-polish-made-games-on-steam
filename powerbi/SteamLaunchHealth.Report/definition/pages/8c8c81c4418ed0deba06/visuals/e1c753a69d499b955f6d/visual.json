@@ -1,0 +1,380 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "e1c753a69d499b955f6d",
+  "position": {
+    "x": 23.576826196473551,
+    "y": 96.12090680100755,
+    "z": 3000,
+    "height": 607.5566750629722,
+    "width": 814.30730478589419,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "patch_effect"
+                    }
+                  },
+                  "Property": "game"
+                }
+              },
+              "queryRef": "patch_effect.game",
+              "nativeQueryRef": "game",
+              "displayName": "Game"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "patch_effect"
+                    }
+                  },
+                  "Property": "patch_day"
+                }
+              },
+              "queryRef": "patch_effect.patch_day",
+              "nativeQueryRef": "patch_day",
+              "displayName": "Patch day"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "patch_effect"
+                    }
+                  },
+                  "Property": "patch_title"
+                }
+              },
+              "queryRef": "patch_effect.patch_title",
+              "nativeQueryRef": "patch_title",
+              "displayName": "Patch"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "patch_effect"
+                    }
+                  },
+                  "Property": "pct_positive_before"
+                }
+              },
+              "queryRef": "patch_effect.pct_positive_before",
+              "nativeQueryRef": "pct_positive_before",
+              "displayName": "% positive before",
+              "format": "0.0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "patch_effect"
+                    }
+                  },
+                  "Property": "pct_positive_after"
+                }
+              },
+              "queryRef": "patch_effect.pct_positive_after",
+              "nativeQueryRef": "pct_positive_after",
+              "displayName": "% positive after",
+              "format": "0.0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "patch_effect"
+                    }
+                  },
+                  "Property": "change_points"
+                }
+              },
+              "queryRef": "patch_effect.change_points",
+              "nativeQueryRef": "change_points",
+              "displayName": "Change (pts)",
+              "format": "0.0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "patch_effect"
+                    }
+                  },
+                  "Property": "pct_neg_performance_before"
+                }
+              },
+              "queryRef": "patch_effect.pct_neg_performance_before",
+              "nativeQueryRef": "pct_neg_performance_before",
+              "displayName": "Perf. complaints before (%)",
+              "format": "0.0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "patch_effect"
+                    }
+                  },
+                  "Property": "pct_neg_performance_after"
+                }
+              },
+              "queryRef": "patch_effect.pct_neg_performance_after",
+              "nativeQueryRef": "pct_neg_performance_after",
+              "displayName": "Perf. complaints after (%)",
+              "format": "0.0"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "patch_effect"
+                  }
+                },
+                "Property": "change_points"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "patch_effect"
+                            }
+                          },
+                          "Property": "change_points"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient3": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#ec8b8a'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "-8D"
+                              }
+                            }
+                          },
+                          "mid": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#ffffff'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "0D"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#86b6ef'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "8D"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "patch_effect.change_points"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "103.10827619991548D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "patch_effect.pct_neg_performance_before"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "232.10864834362718D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "patch_effect.patch_title"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "94.93954122577952D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "patch_effect.pct_neg_performance_after"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "65.82114181990914D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "patch_effect.pct_positive_before"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "65.79597409058772D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "patch_effect.pct_positive_after"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "125.37279552884085D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "patch_effect.game"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "39.3299750359419D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "patch_effect.patch_day"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "68.93198949547185D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "patch_effect.change_points"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Before and after the first major patch'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

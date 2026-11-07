@@ -1,0 +1,36 @@
+table dim_theme
+	lineageTag: 61637041-525b-4faa-ac41-c673825e0ca0
+
+	column theme_order
+		dataType: int64
+		formatString: 0
+		lineageTag: c05117e1-6077-40ab-845c-20aa1da44550
+		summarizeBy: none
+		sourceColumn: theme_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column theme
+		dataType: string
+		lineageTag: 5d49f285-ffcc-4692-b506-a6478591bc56
+		summarizeBy: none
+		sourceColumn: theme
+		sortByColumn: theme_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_theme = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "steam_reviews"),
+				    public_pbi_dim_theme = Source{[Schema="public",Item="pbi_dim_theme"]}[Data]
+				in
+				    public_pbi_dim_theme
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

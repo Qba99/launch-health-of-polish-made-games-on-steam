@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "c96179606bd237f5d397",
+  "position": {
+    "x": 948,
+    "y": 96,
+    "z": 8000,
+    "width": 292,
+    "height": 96,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Refunded Share of Negatives"
+                }
+              },
+              "queryRef": "_Measures.Refunded Share of Negatives",
+              "nativeQueryRef": "Refunded Share of Negatives",
+              "displayName": "Negatives that were refunded"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

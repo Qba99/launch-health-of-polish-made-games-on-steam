@@ -1,0 +1,72 @@
+table fact_themes
+	lineageTag: 1442f7ec-4ccb-4e19-83e7-c0591484f2f3
+
+	column recommendation_id
+		dataType: int64
+		formatString: 0
+		lineageTag: ea162e3f-a0e6-42bb-a5c1-c1c01d6e5eda
+		summarizeBy: sum
+		sourceColumn: recommendation_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column app_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2bb498da-1ca5-41a7-9fbc-f5ef419932e7
+		summarizeBy: none
+		sourceColumn: app_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_n
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9f9eac01-53f7-4395-aca3-79080165b446
+		summarizeBy: none
+		sourceColumn: day_n
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column language
+		dataType: string
+		isHidden
+		lineageTag: 25de384a-1230-43bf-9dcd-d3f83a4b32bc
+		summarizeBy: none
+		sourceColumn: language
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column theme_order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4f0af8e9-1a1d-40f0-be04-52141d44966a
+		summarizeBy: none
+		sourceColumn: theme_order
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_themes = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "steam_reviews"),
+				    public_pbi_fact_themes = Source{[Schema="public",Item="pbi_fact_themes"]}[Data]
+				in
+				    public_pbi_fact_themes
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

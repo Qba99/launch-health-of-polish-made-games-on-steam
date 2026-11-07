@@ -1,0 +1,193 @@
+table _Measures
+	lineageTag: b96e1d5d-1b03-4cb7-ac40-b1a1f2f0baba
+
+	measure Reviews = COUNTROWS ( fact_reviews )
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 72edf7ed-b819-4e8f-b63e-810376971716
+
+	measure 'Positive Reviews' = CALCULATE ( [Reviews], fact_reviews[voted_up] = TRUE () )
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: ee25cf07-2a3c-46f2-b296-662791361c04
+
+	measure 'Negative Reviews' = CALCULATE ( [Reviews], fact_reviews[voted_up] = FALSE () )
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 8ce97a42-b3d0-4a90-9c51-c84dad7026ea
+
+	measure '% Positive' = DIVIDE ( [Positive Reviews], [Reviews] )
+		formatString: 0.0%
+		displayFolder: Base
+		lineageTag: 6cb34b7a-b795-4bfa-9034-19869413f344
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Positive (cumulative)' =
+			
+			VAR _day = MAX ( dim_day[day_n] )
+			RETURN
+			    CALCULATE ( [% Positive], REMOVEFILTERS ( dim_day ), dim_day[day_n] <= _day )
+		formatString: 0.0%
+		displayFolder: Q1 launch curve
+		lineageTag: 983ff3f7-835d-489c-a08d-0d25c75520e2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Positive (rolling 7 days)' =
+			
+			VAR _day = MAX ( dim_day[day_n] )
+			VAR _window =
+			    CALCULATETABLE ( VALUES ( dim_day[day_n] ), REMOVEFILTERS ( dim_day ),
+			                     dim_day[day_n] > _day - 7, dim_day[day_n] <= _day )
+			VAR _reviews = CALCULATE ( [Reviews], REMOVEFILTERS ( dim_day ), _window )
+			RETURN
+			    IF ( _reviews >= 50, CALCULATE ( [% Positive], REMOVEFILTERS ( dim_day ), _window ) )
+		formatString: 0.0%
+		displayFolder: Q1 launch curve
+		lineageTag: 22c8e028-e567-4cc6-aab4-62c830dce2d7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Week-1 % Positive' =
+			
+			CALCULATE ( [% Positive], REMOVEFILTERS ( dim_day ), dim_day[day_n] <= 6 )
+		formatString: 0.0%
+		displayFolder: Q1 launch curve
+		lineageTag: 08c6b7db-374c-4093-8da1-ebc6cfe499d8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Days 7-90 % Positive' =
+			
+			CALCULATE ( [% Positive], REMOVEFILTERS ( dim_day ), dim_day[day_n] >= 7 )
+		formatString: 0.0%
+		displayFolder: Q1 launch curve
+		lineageTag: 947e7d29-4bbe-40a6-9a3e-ea6d36978bc7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Recent % Positive (days 61-90)' =
+			
+			CALCULATE ( [% Positive], REMOVEFILTERS ( dim_day ), dim_day[day_n] >= 61 )
+		formatString: 0.0%
+		displayFolder: Q1 launch curve
+		lineageTag: c6ba06e0-a91b-497c-933f-1bb31209ac96
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Recent vs Week 1 (pts)' =
+			
+			( [Recent % Positive (days 61-90)] - [Week-1 % Positive] ) * 100
+		formatString: +0.0;-0.0;0.0
+		displayFolder: Q1 launch curve
+		lineageTag: 3236dba5-6d4c-4cb6-aa4d-5f87132fb793
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Early-Negative Share (0-2h)' =
+			
+			DIVIDE (
+			    CALCULATE ( [Negative Reviews], REMOVEFILTERS ( dim_playtime ), dim_playtime[playtime_bucket] = "0-2h" ),
+			    CALCULATE ( [Negative Reviews], REMOVEFILTERS ( dim_playtime ), dim_playtime[playtime_bucket_order] > 0 )
+			)
+		formatString: 0.0%
+		displayFolder: Q2 playtime
+		lineageTag: a8f943de-9943-424e-a0d1-5b931712f6d8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Late-Negative Share (20h+)' =
+			
+			DIVIDE (
+			    CALCULATE ( [Negative Reviews], REMOVEFILTERS ( dim_playtime ), dim_playtime[playtime_bucket] = "20h+" ),
+			    CALCULATE ( [Negative Reviews], REMOVEFILTERS ( dim_playtime ), dim_playtime[playtime_bucket_order] > 0 )
+			)
+		formatString: 0.0%
+		displayFolder: Q2 playtime
+		lineageTag: 7818f620-7dd1-4ea4-a998-b8c51a6719c0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Refunded Share of Negatives' =
+			
+			DIVIDE ( CALCULATE ( [Negative Reviews], fact_reviews[refunded] = TRUE () ), [Negative Reviews] )
+		formatString: 0.0%
+		displayFolder: Q2 playtime
+		lineageTag: 5e11db9d-f318-45f8-8e60-15d0ec002caf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Market Gap (pts)' =
+			
+			( [% Positive] - CALCULATE ( [% Positive], REMOVEFILTERS ( dim_language ) ) ) * 100
+		formatString: +0.0;-0.0;0.0
+		displayFolder: Q3 markets
+		lineageTag: d92e75e6-5b13-4fcb-b064-4a4380d1bec3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Market Gap (pts, 50+ reviews)' =
+			
+			IF ( [Reviews] >= 50, [Market Gap (pts)] )
+		formatString: +0.0;-0.0;0.0
+		displayFolder: Q3 markets
+		lineageTag: 83e4ea2e-ebab-40ce-83e2-84ea9d6e2663
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Excess Negatives' =
+			
+			SUMX (
+			    VALUES ( dim_game[app_id] ),
+			    VAR _game_rate =
+			        CALCULATE ( DIVIDE ( [Negative Reviews], [Reviews] ), REMOVEFILTERS ( dim_language ) )
+			    RETURN
+			        [Negative Reviews] - [Reviews] * _game_rate
+			)
+		formatString: #,0
+		displayFolder: Q3 markets
+		lineageTag: 97508c82-d5e2-4775-a0b3-235ace4213ca
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Theme Share of Negatives' =
+			
+			IF (
+			    HASONEVALUE ( dim_language[text_group] ),
+			    DIVIDE (
+			        [Theme Mentions],
+			        CALCULATE ( [Negative Reviews], KEEPFILTERS ( NOT ISBLANK ( dim_language[text_group] ) ) )
+			    )
+			)
+		formatString: 0.0%
+		displayFolder: Q4 complaints
+		lineageTag: e2497c0d-e77a-47a8-a059-dec7e36f6a48
+
+	measure 'Theme Mentions' = COUNTROWS ( fact_themes )
+		formatString: #,0
+		displayFolder: Q4 complaints
+		lineageTag: 35e5a6c9-d9c6-4494-acbe-2587160f5a13
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: b7c57d65-04d7-45f5-9f62-60ce63508d8b
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

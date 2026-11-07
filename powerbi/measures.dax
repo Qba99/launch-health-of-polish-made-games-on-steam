@@ -1,0 +1,103 @@
+// measures.dax — DAX measures for SteamLaunchHealth.pbix
+// Create a table called _Measures (Home > Enter data > Load; hide its empty column), then add each
+// measure below with New measure, pasting everything from the name to the end of the
+// expression. Format: % measures as Percentage, 1 decimal; "(pts)" measures as Decimal, 1.
+// Table names are the pbi_ views without the prefix (fact_reviews, dim_day, ...).
+
+// ---------- Base ----------
+
+Reviews = COUNTROWS ( fact_reviews )
+
+Positive Reviews = CALCULATE ( [Reviews], fact_reviews[voted_up] = TRUE () )
+
+Negative Reviews = CALCULATE ( [Reviews], fact_reviews[voted_up] = FALSE () )
+
+% Positive = DIVIDE ( [Positive Reviews], [Reviews] )
+
+// ---------- Q1: launch curve ----------
+
+// Score of all reviews from launch day up to the day on the axis (Steam's "overall" score).
+// REMOVEFILTERS(dim_day) first, so it also works when the axis is week or month since launch.
+% Positive (cumulative) =
+VAR _day = MAX ( dim_day[day_n] )
+RETURN
+    CALCULATE ( [% Positive], REMOVEFILTERS ( dim_day ), dim_day[day_n] <= _day )
+
+// Score of the 7 days ending on the axis day; blank below 50 reviews (too noisy to show).
+% Positive (rolling 7 days) =
+VAR _day = MAX ( dim_day[day_n] )
+VAR _window =
+    CALCULATETABLE ( VALUES ( dim_day[day_n] ), REMOVEFILTERS ( dim_day ),
+                     dim_day[day_n] > _day - 7, dim_day[day_n] <= _day )
+VAR _reviews = CALCULATE ( [Reviews], REMOVEFILTERS ( dim_day ), _window )
+RETURN
+    IF ( _reviews >= 50, CALCULATE ( [% Positive], REMOVEFILTERS ( dim_day ), _window ) )
+
+Week-1 % Positive =
+CALCULATE ( [% Positive], REMOVEFILTERS ( dim_day ), dim_day[day_n] <= 6 )
+
+Days 7-90 % Positive =
+CALCULATE ( [% Positive], REMOVEFILTERS ( dim_day ), dim_day[day_n] >= 7 )
+
+// Steam's "Recent Reviews" score at the end of the quarter.
+Recent % Positive (days 61-90) =
+CALCULATE ( [% Positive], REMOVEFILTERS ( dim_day ), dim_day[day_n] >= 61 )
+
+Recent vs Week 1 (pts) =
+( [Recent % Positive (days 61-90)] - [Week-1 % Positive] ) * 100
+
+// ---------- Q2: first impression or content ----------
+
+// Share of negatives written inside Steam's 2-hour refund window (unknown playtime excluded).
+Early-Negative Share (0-2h) =
+DIVIDE (
+    CALCULATE ( [Negative Reviews], REMOVEFILTERS ( dim_playtime ), dim_playtime[playtime_bucket] = "0-2h" ),
+    CALCULATE ( [Negative Reviews], REMOVEFILTERS ( dim_playtime ), dim_playtime[playtime_bucket_order] > 0 )
+)
+
+Late-Negative Share (20h+) =
+DIVIDE (
+    CALCULATE ( [Negative Reviews], REMOVEFILTERS ( dim_playtime ), dim_playtime[playtime_bucket] = "20h+" ),
+    CALCULATE ( [Negative Reviews], REMOVEFILTERS ( dim_playtime ), dim_playtime[playtime_bucket_order] > 0 )
+)
+
+Refunded Share of Negatives =
+DIVIDE ( CALCULATE ( [Negative Reviews], fact_reviews[refunded] = TRUE () ), [Negative Reviews] )
+
+// ---------- Q3: markets ----------
+
+// Market score minus the same game's overall score. Use per game (rows = game, columns = market);
+// across several games it compares with their pooled score instead.
+Market Gap (pts) =
+( [% Positive] - CALCULATE ( [% Positive], REMOVEFILTERS ( dim_language ) ) ) * 100
+
+// Same, blank where the market has fewer than 50 reviews for the game (use in the game x market matrix).
+Market Gap (pts, 50+ reviews) =
+IF ( [Reviews] >= 50, [Market Gap (pts)] )
+
+// Negative reviews above what each game's own overall rate predicts for this market's volume.
+// SUMX over games, so a total across games is the sum of per-game excesses (not a pooled rate).
+Excess Negatives =
+SUMX (
+    VALUES ( dim_game[app_id] ),
+    VAR _game_rate =
+        CALCULATE ( DIVIDE ( [Negative Reviews], [Reviews] ), REMOVEFILTERS ( dim_language ) )
+    RETURN
+        [Negative Reviews] - [Reviews] * _game_rate
+)
+
+// ---------- Q4: complaints ----------
+
+Theme Mentions = COUNTROWS ( fact_themes )
+
+// Share of negative reviews mentioning a theme. Needs exactly one text group selected
+// (English/Polish or Chinese): different keyword lists must never be pooled.
+// KEEPFILTERS keeps the slicer's choice; without it this filter would replace it.
+Theme Share of Negatives =
+IF (
+    HASONEVALUE ( dim_language[text_group] ),
+    DIVIDE (
+        [Theme Mentions],
+        CALCULATE ( [Negative Reviews], KEEPFILTERS ( NOT ISBLANK ( dim_language[text_group] ) ) )
+    )
+)

@@ -1,0 +1,135 @@
+table dim_game
+	lineageTag: 97401ef1-df1b-48b7-b6b3-b5bc42bf1163
+
+	column app_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c2603d7-d38a-4fe5-b49e-53d4be8f904e
+		summarizeBy: none
+		sourceColumn: app_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column game
+		dataType: string
+		lineageTag: 0d720507-a4d1-47b3-bce4-75aed8d878f4
+		summarizeBy: none
+		sourceColumn: game
+
+		annotation SummarizationSetBy = Automatic
+
+	column developer
+		dataType: string
+		lineageTag: 281222e1-9814-4f6f-8f8c-4f98d4a5bca1
+		summarizeBy: none
+		sourceColumn: developer
+
+		annotation SummarizationSetBy = Automatic
+
+	column cohort
+		dataType: string
+		lineageTag: b22f547c-a567-4b23-98bb-44b1d67e0bc3
+		summarizeBy: none
+		sourceColumn: cohort
+
+		annotation SummarizationSetBy = Automatic
+
+	column launch_type
+		dataType: string
+		lineageTag: 1ee66e45-f56f-4836-b386-842fbf6d283f
+		summarizeBy: none
+		sourceColumn: launch_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column launch_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f033ae56-9460-4193-8084-cd9ea308536b
+		summarizeBy: none
+		sourceColumn: launch_date
+
+		variation Variation
+			isDefault
+			relationship: b32876ef-1985-4372-a87d-263c2611597e
+			defaultHierarchy: LocalDateTable_c971d6c9-b203-43f6-a113-5298a5ef44a1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column launch_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 971915ab-1b6b-4f20-b217-d7b91e18f47a
+		summarizeBy: sum
+		sourceColumn: launch_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column genres
+		dataType: string
+		lineageTag: 98701b2b-fc7f-492f-b334-25ec97016c74
+		summarizeBy: none
+		sourceColumn: genres
+
+		annotation SummarizationSetBy = Automatic
+
+	column reviews_lifetime
+		dataType: int64
+		formatString: 0
+		lineageTag: 699a569f-2567-49ff-817e-8a0131d658ec
+		summarizeBy: sum
+		sourceColumn: reviews_lifetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column reviews_collected
+		dataType: int64
+		formatString: 0
+		lineageTag: 90ec59b0-282d-4469-a855-138985d564e8
+		summarizeBy: sum
+		sourceColumn: reviews_collected
+
+		annotation SummarizationSetBy = Automatic
+
+	column pct_lifetime_in_window
+		dataType: double
+		lineageTag: 102148dc-96ce-4777-9fee-87e1e6973e75
+		summarizeBy: sum
+		sourceColumn: pct_lifetime_in_window
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column patch_day
+		dataType: int64
+		formatString: 0
+		lineageTag: d0a53293-2de5-4ec7-b187-057a2b72943c
+		summarizeBy: sum
+		sourceColumn: patch_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column patch_title
+		dataType: string
+		lineageTag: c8d7e7d6-a0aa-447d-b7d7-bb7a844f4f19
+		summarizeBy: none
+		sourceColumn: patch_title
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_game = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "steam_reviews"),
+				    public_pbi_dim_game = Source{[Schema="public",Item="pbi_dim_game"]}[Data]
+				in
+				    public_pbi_dim_game
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

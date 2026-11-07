@@ -11,3 +11,7 @@ venv/
 # Clean review tables are over GitHub's 100 MB limit; rebuild with src/clean.py
 data/clean/reviews.csv
 data/clean/review_text_negative.csv
+
+# Power BI project: local cache and per-user settings
+**/.pbi/localSettings.json
+**/.pbi/cache.abf

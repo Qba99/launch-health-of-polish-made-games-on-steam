@@ -1,0 +1,52 @@
+table dim_language
+	lineageTag: 91c6f1a2-751b-4eba-a2cc-24fcb20b2d1d
+
+	column language
+		dataType: string
+		lineageTag: ef9a491b-f049-4599-b18c-eaf1328fd223
+		summarizeBy: none
+		sourceColumn: language
+
+		annotation SummarizationSetBy = Automatic
+
+	column market
+		dataType: string
+		lineageTag: b5476c23-5b78-4769-9f7d-2fbf4512f1be
+		summarizeBy: none
+		sourceColumn: market
+		sortByColumn: market_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_order
+		dataType: int64
+		formatString: 0
+		lineageTag: b20cf813-c82f-40f1-979c-02c843a7e0b9
+		summarizeBy: sum
+		sourceColumn: market_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column text_group
+		dataType: string
+		lineageTag: cefc282b-792d-480d-a4a3-e0c9f2736611
+		summarizeBy: none
+		sourceColumn: text_group
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_language = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "steam_reviews"),
+				    public_pbi_dim_language = Source{[Schema="public",Item="pbi_dim_language"]}[Data]
+				in
+				    public_pbi_dim_language
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

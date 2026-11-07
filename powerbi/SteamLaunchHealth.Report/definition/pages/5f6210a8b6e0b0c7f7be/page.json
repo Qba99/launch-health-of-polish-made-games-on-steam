@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "5f6210a8b6e0b0c7f7be",
+  "displayName": "Launch curve",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

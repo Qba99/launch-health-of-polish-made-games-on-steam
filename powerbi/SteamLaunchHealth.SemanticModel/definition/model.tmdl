@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-150
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["dim_date","dim_day","dim_game","dim_language","dim_playtime","dim_theme","fact_reviews","patch_effect","fact_themes","_Measures"]
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
+
+ref table dim_date
+ref table DateTableTemplate_4762f7d6-2273-48b7-b52e-5121f3e22e31
+ref table dim_day
+ref table dim_game
+ref table LocalDateTable_c971d6c9-b203-43f6-a113-5298a5ef44a1
+ref table dim_language
+ref table dim_playtime
+ref table dim_theme
+ref table fact_reviews
+ref table patch_effect
+ref table fact_themes
+ref table _Measures
+
+ref cultureInfo en-US
+

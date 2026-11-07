@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "SteamLaunchHealth"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "316b3640-8d67-49bb-8369-47c00439d566"
+  }
+}
