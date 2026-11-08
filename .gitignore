@@ -15,3 +15,6 @@ data/clean/review_text_negative.csv
 # Power BI project: local cache and per-user settings
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
+
+# Tableau files
+tableau
