@@ -4,6 +4,8 @@
 
 An analysis of 754,026 Steam reviews from 23 Polish-made games, covering launch day to day 90. It is written for a mid-sized Polish publisher planning its next release. The pipeline uses Python for collection and cleaning, PostgreSQL for the analysis views, and pandas and Power BI for the analysis and dashboard.
 
+📄 **[One-page executive summary (PDF)](docs/executive_summary.pdf)**
+
 ![Portfolio overview](images/dashboard_p1_overview.png)
 
 ## Key findings
