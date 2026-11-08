@@ -4,7 +4,10 @@
 
 An analysis of 754,026 Steam reviews from 23 Polish-made games, covering launch day to day 90. It is written for a mid-sized Polish publisher planning its next release. The pipeline uses Python for collection and cleaning, PostgreSQL for the analysis views, and pandas and Power BI for the analysis and dashboard.
 
-📄 **[One-page executive summary (PDF)](docs/executive_summary.pdf)**
+- 📄 **[One-page executive summary (PDF)](docs/executive_summary.pdf)**
+- 📊 **[Interactive dashboard on Tableau Public](https://public.tableau.com/app/profile/jakub.siuda/viz/LaunchhealthofPolish-madegamesonSteam/Portfoliooverview)**
+- 📓 **[Analysis notebook on Kaggle](https://www.kaggle.com/code/jakubsiuda/launch-health-of-polish-made-games-on-steam)** (runs in the browser on the exported views)
+- 🗂️ **[Dataset on Kaggle](https://www.kaggle.com/datasets/jakubsiuda/polish-made-games-on-steam-first-90-days)**
 
 ![Portfolio overview](images/dashboard_p1_overview.png)
 
@@ -89,7 +92,7 @@ Steam API ──► src/fetch_reviews.py ──► data/raw/ (JSON pages)
 | ![](images/dashboard_p4_patch.png) | ![](images/spotlight_cyberpunk.png) |
 | **First patch:** before vs after | **Notebook:** Cyberpunk 2077 spotlight |
 
-Open `powerbi/SteamLaunchHealth.pbix` in Power BI Desktop. To edit it as source, use `SteamLaunchHealth.pbip` (PBIR report and TMDL model). The model reads the `pbi_` views from a local PostgreSQL database.
+The same dashboard is also [on Tableau Public](https://public.tableau.com/app/profile/jakub.siuda/viz/LaunchhealthofPolish-madegamesonSteam/Portfoliooverview), no install needed. Open `powerbi/SteamLaunchHealth.pbix` in Power BI Desktop. To edit it as source, use `SteamLaunchHealth.pbip` (PBIR report and TMDL model). The model reads the `pbi_` views from a local PostgreSQL database.
 
 ## How to reproduce
 
